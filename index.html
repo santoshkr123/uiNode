@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #card {
+            width: 300px;
+            height: 350px;
+            background: red;
+            padding: 12px;
+            margin-top: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Login</h1>
+    <form onsubmit="login(e)">
+        <input name ="username " />
+        <input name ="password"/>
+        <button>login</button>
+    </form>
+    <div id="card">
+        <h1>UserName:</h1>
+        <label id="username"></label>
+        <h1 id="password">password :
+        </h1>
+        <label></label>
+
+    </div>
+    <script>
+       function login(e){
+        e.preventDefault()
+        const form =e.target
+        const username =form.elements.username.value
+        const password = form.elements.password.value
+          fetch(`http://localhost:8080 ?username=${username}&password=${password}`)
+          .then((res)=>res.json())
+
+          .then((data)=>{
+            const username =document.getElementById("username")
+            const password=document.getElementById("password")
+            username.innerHTML=data.username
+            password.innerHTML.data.password
+          })
+          
+          .catch((err)=>console.log(err))
+       }
+
+        
+    </script>
+    
+</body>
+</html>
